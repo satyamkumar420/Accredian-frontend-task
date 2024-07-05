@@ -30,10 +30,10 @@ Follow these steps to set up and run the project on your local machine.
 3. **Start the development server:**
 
    ```bash
-   npm start
+   npm run dev
    ```
 
-   The application will open in your default web browser at `http://localhost:3000`.
+   The application will open in your default web browser at `http://localhost:5173`.
 
 ## Project Structure 📂
 
