@@ -26,3 +26,5 @@ dist-ssr
 .git
 
 package-lock.json
+
+.eslintrc.cjs
