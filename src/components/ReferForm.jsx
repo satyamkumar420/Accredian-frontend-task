@@ -1,39 +1,47 @@
 import { useState } from "react";
-import { TextField, Button, Box, CircularProgress } from "@mui/material";
+import { TextField, Button, Box, CircularProgress, Alert } from "@mui/material";
 import axios from "axios";
 
 const ReferForm = () => {
   const [formData, setFormData] = useState({
     referrerName: "",
-    referrerEmail: "",
+    referrerEmail: "pagalirepagali@gmail.com",
     refereeName: "",
     refereeEmail: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
+      // ""
       await axios.post(
         "https://accredian-backend-task-ldl2.onrender.com/api/referral",
         formData
       );
       alert("Referral submitted successfully!");
     } catch (error) {
-      alert("Failed to submit referral.");
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Failed to submit referral.");
+      }
     }
     setIsLoading(false);
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit}>
+      {error && <Alert severity="error">{error}</Alert>}
       <TextField
         label="Your Name"
         name="referrerName"
