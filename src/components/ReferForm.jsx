@@ -21,7 +21,10 @@ const ReferForm = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/referral", formData);
+      await axios.post(
+        "https://accredian-backend-task-ldl2.onrender.com/api/referral",
+        formData
+      );
       alert("Referral submitted successfully!");
     } catch (error) {
       alert("Failed to submit referral.");
@@ -69,7 +72,13 @@ const ReferForm = () => {
         fullWidth
         margin="normal"
       />
-      <Button type="submit" variant="contained" color="primary" fullWidth disabled={isLoading}>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        disabled={isLoading}
+      >
         {isLoading ? <CircularProgress color="inherit" size={24} /> : "Submit"}
       </Button>
     </Box>
@@ -77,4 +86,3 @@ const ReferForm = () => {
 };
 
 export default ReferForm;
-
